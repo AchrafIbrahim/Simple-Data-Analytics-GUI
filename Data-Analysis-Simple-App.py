@@ -142,8 +142,8 @@ def df_countunique():
         update_text_area(result_text)
     else:
         current_text = text_area.get("1.0", tk.END)
-        if "No data available to perform data shape" not in current_text:
-            text_area.insert(tk.END, "No data available to perform data shape\n")
+        if "No data available to perform Unique Count" not in current_text:
+            text_area.insert(tk.END, "No data available to perform Count Unique\n")
 
 # =========================BUTTON=========================
 button_width = 10
