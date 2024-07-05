@@ -132,6 +132,19 @@ def df_missingvalues():
         if "No data available to perform data describe" not in current_text:
             text_area.insert(tk.END, "No data available to perform data describe\n")
 
+#DF COUNT UNIQUE DATA IN COLUMN
+def df_countunique():
+    global df
+    result_text = ""
+    if df is not None: 
+        unique_counts = df.nunique()
+        result_text = f"\nNumber of unique values in each column:\n{unique_counts.to_string()}"
+        update_text_area(result_text)
+    else:
+        current_text = text_area.get("1.0", tk.END)
+        if "No data available to perform data shape" not in current_text:
+            text_area.insert(tk.END, "No data available to perform data shape\n")
+
 # =========================BUTTON=========================
 button_width = 10
 
@@ -149,6 +162,9 @@ button_valuecounts.grid(row=0, column=2, padx=5, pady=5, sticky="w")
 
 button_missingvalues = tk.Button(process_button_frame, text="Missing Values", command=df_missingvalues, width=button_width)
 button_missingvalues.grid(row=0, column=3, padx=5, pady=5, sticky="w")
+
+button_countunique = tk.Button(process_button_frame, text="Count Unique", command=df_countunique, width=button_width)
+button_countunique.grid(row=0, column=4, padx=5, pady=5, sticky="w")
 
 root.mainloop()
 
