@@ -83,6 +83,7 @@ def df_shape():
     else:
         current_text = text_area.get("1.0", tk.END)
         if "No data available to perform data shape" not in current_text:
+            text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform data shape\n")
 
 #DF DESCRIBE
@@ -94,6 +95,7 @@ def df_describe():
     else:
         current_text = text_area.get("1.0", tk.END)
         if "No data available to perform data describe" not in current_text:
+            text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform data describe\n")
 
 #DF VALUE COUNTS
@@ -111,6 +113,7 @@ def df_value_counts():
     else:
         current_text = text_area.get("1.0", tk.END)
         if "No data available to perform value counts" not in current_text:
+            text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform value counts\n")
 
 #DF DETECT MISSING VALUES
@@ -130,12 +133,12 @@ def df_missingvalues():
     else:
         current_text = text_area.get("1.0", tk.END)
         if "No data available to perform data describe" not in current_text:
+            text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform data describe\n")
 
 #DF COUNT UNIQUE DATA IN COLUMN
 def df_countunique():
     global df
-    result_text = ""
     if df is not None: 
         unique_counts = df.nunique()
         result_text = f"\nNumber of unique values in each column:\n{unique_counts.to_string()}"
@@ -143,6 +146,7 @@ def df_countunique():
     else:
         current_text = text_area.get("1.0", tk.END)
         if "No data available to perform Unique Count" not in current_text:
+            text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform Count Unique\n")
 
 # =========================BUTTON=========================
