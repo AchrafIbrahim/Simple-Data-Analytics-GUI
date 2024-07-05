@@ -113,6 +113,24 @@ def df_value_counts():
         if "No data available to perform value counts" not in current_text:
             text_area.insert(tk.END, "No data available to perform value counts\n")
 
+#DF DETECT MISSING VALUES
+def df_missingvalues():
+    global df 
+    if df is not None:
+        missing_values = df.isna()
+        if missing_values.sum().sum() == 0:
+            result_text = "There are no missing values"
+        else:
+            result_text = "Missing values found in the following locations: \n"
+            for column in missing_values.columns:
+                missing_indices = missing_values.index[missing_values[column]].tolist()
+                if missing_indices:
+                    result_text += f"Column '{column}': Rows {missing_indices}\n"
+        update_text_area(result_text)
+    else:
+        current_text = text_area.get("1.0", tk.END)
+        if "No data available to perform data describe" not in current_text:
+            text_area.insert(tk.END, "No data available to perform data describe\n")
 
 # =========================BUTTON=========================
 button_width = 10
@@ -128,6 +146,9 @@ button_describe.grid(row=0, column=1, padx=5, pady=5, sticky="w")
 
 button_valuecounts = tk.Button(process_button_frame, text="Value Counts", command=df_value_counts, width=button_width)
 button_valuecounts.grid(row=0, column=2, padx=5, pady=5, sticky="w")
+
+button_missingvalues = tk.Button(process_button_frame, text="Missing Values", command=df_missingvalues, width=button_width)
+button_missingvalues.grid(row=0, column=3, padx=5, pady=5, sticky="w")
 
 root.mainloop()
 
