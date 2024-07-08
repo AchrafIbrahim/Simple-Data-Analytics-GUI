@@ -149,6 +149,23 @@ def df_countunique():
             text_area.delete("1.0", tk.END)
             text_area.insert(tk.END, "No data available to perform Count Unique\n")
 
+#DF CORRELATION
+def df_correlation():
+    global df 
+    if df is not None:
+        method_list = ["pearson", "kendall", "spearman"]
+        if len(method_list) > 0:
+            result_text = ""
+            for methods in method_list:
+                correlation_matrix = df.corr(method=methods)
+                result_text += f"\nCorrelation using '{methods}' method: \n{correlation_matrix.to_string()}\n"
+            update_text_area(result_text)
+    else:
+        current_text = text_area.get("1.0", tk.END)
+        if "No data available to perform Correlation" not in current_text:
+            text_area.delete("1.0", tk.END)
+            text_area.insert(tk.END, "No data available to perform Correlation\n")
+
 # =========================BUTTON=========================
 button_width = 10
 
@@ -169,6 +186,9 @@ button_missingvalues.grid(row=0, column=3, padx=5, pady=5, sticky="w")
 
 button_countunique = tk.Button(process_button_frame, text="Count Unique", command=df_countunique, width=button_width)
 button_countunique.grid(row=0, column=4, padx=5, pady=5, sticky="w")
+
+button_correlation = tk.Button(process_button_frame, text="Correlation", command=df_correlation, width=button_width)
+button_correlation.grid(row=0, column=5, padx=5, pady=5, sticky="w")
 
 root.mainloop()
 
