@@ -219,7 +219,7 @@ def df_barchart():
             # Display the bar chart in the Tkinter window
             canvas = FigureCanvasTkAgg(fig, master=visualization_frame)
             canvas.draw()
-            canvas.get_tk_widget().grid(row=0, column=0, padx=10, pady=10, sticky="w")
+            canvas.get_tk_widget().grid(row=0, column=0, padx=0, pady=0, sticky="w")
         else:
             update_text_area("No categorical columns available for bar chart.")
     else:
